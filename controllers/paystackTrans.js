@@ -2,7 +2,7 @@ const { cacheTransactionInitialization, getCacheTransactionInitialization } = re
 const transactionModel = require("../models/paystackTransaction")
 const axios = require("axios");
 const redis = require("../utils/redis");
-const SECRET_KEY = process.env.PAYSTACK_SECRET_KEY;
+const { settings } = require("../settings/application");
 const formattedDate = new Date().toLocaleString();
 
 exports.initializePyment = async (req, res) => {
@@ -25,7 +25,7 @@ exports.initializePyment = async (req, res) => {
 
         const response = await axios.post("https://api.paystack.co/transaction/initialize", paymentData, {
             headers: {
-                Authorization: `Bearer ${SECRET_KEY}`
+                Authorization: `Bearer ${settings.paystack_secret}`
             }
         });
         // console.log(response.data);
@@ -66,7 +66,7 @@ exports.verifyPament = async (req, res) => {
 
         const response = await axios.get(`https://api.paystack.co/transaction/verify/${reference}`, {
             headers: {
-                Authorization: `Bearer ${SECRET_KEY}`
+                Authorization: `Bearer ${settings.paystack_secret}`
             }
         });
 

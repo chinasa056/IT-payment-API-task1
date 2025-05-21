@@ -1,7 +1,7 @@
-const mongoose = require("mongoose")
-const DB = process.env.MONGODB_URI
+const mongoose = require("mongoose");
+const { settings } = require("../settings/application");
 
-mongoose.connect(DB)
+mongoose.connect(settings.mongodb)
 .then(() => {
     console.log("Connection to database successful")
 })
