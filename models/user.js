@@ -13,21 +13,7 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         require:true
-    },
-    userName:{
-        type: String, 
-        require:true
-    },
-    IsVerified: {
-        type: Boolean,
-        default: false
-    },
-    roles: {
-        type: String,
-        enum: ["admin", "user"],
-        default: 'user'
     }
- 
 },{timestamps: true})
 
 const userModel = mongoose.model('Users', userSchema);
