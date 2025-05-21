@@ -1,4 +1,4 @@
-name: super-Linter
+name: Payment Gateway CI
 
 on:
   push:
