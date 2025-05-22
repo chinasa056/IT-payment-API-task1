@@ -1,7 +1,7 @@
 require("dotenv").config();
 require("./config/database")
+require("./utils/cloudRedis.js")
 const redis = require("./utils/redis.js");
-const { redisclient } = require("./utils/cloudRedis.js");
 const express = require("express");
 
 const PORT = process.env.PORT || 1112;
@@ -23,7 +23,6 @@ redis.on('error', () => console.log('Unable to connect to redis')
 
 
 app.listen(PORT, () => {
-  redisclient()
   console.log(`server is listening to port: ${PORT}`);
 
 })
