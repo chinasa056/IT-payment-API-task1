@@ -3,6 +3,7 @@ require("./config/database")
 require("./utils/cloudRedis.js")
 const redis = require("./utils/redis.js");
 const express = require("express");
+const cors = require("cors")
 
 const PORT = process.env.PORT || 1112;
 
@@ -12,6 +13,8 @@ const userRoute = require('./routes/userRoute');
 const paystackRouter = require("./routes/paystackRoute.js");
 
 app.use(express.json());
+app.use(cors());
+
 app.use('/api/v1', userRoute)
 app.use('/api/v1', paystackRouter)
 
