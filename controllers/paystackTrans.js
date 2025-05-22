@@ -11,7 +11,7 @@ exports.initializePyment = async (req, res) => {
         const getCachedData = await getCacheTransactionInitialization(email);
         if (getCachedData) {
             return res.status(400).json({
-                message: `Limit exceeded limit: Try again in ${process.env.TRANSACTION_KEY_DURATION} seconds`
+                message: `Limit exceeded limit: Try again in ${settings.duration} seconds`
             })
         }
 
