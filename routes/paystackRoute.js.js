@@ -99,6 +99,6 @@ const router = require("express").Router();
  */
 router.post("/transaction/initialize", initializePyment);
 
-router.get("/payment/verify", verifyPament);
+router.get("/transaction/verify", verifyPament);
 
 module.exports = router;
