@@ -1,16 +1,5 @@
 const { settings } = require("../settings/application");
-const client = require("../utils/cloudRedis");
-const redis = require("../utils/redis");
-
-// exports.cacheTransactionInitialization = async (email, data) => {
-//     try {
-//         const cacheKey = `TRANSACTION_KEY:${email}`;
-
-//         return await client.set(cacheKey, JSON.stringify(data), 'EX', Number(settings.duration));
-//     } catch (error) {
-//         console.log('Unable to cache data on redis', error);
-//     }
-// };
+const client = require("../utils/redis");
 
 exports.cacheTransactionInitialization = async (email, data) => {
     try {
@@ -24,8 +13,6 @@ exports.cacheTransactionInitialization = async (email, data) => {
         console.error('Unable to cache data on Redis:', error);
     }
 };
-
-
 
 exports.getCacheTransactionInitialization = async (email) => {
     try {

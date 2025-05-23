@@ -1,7 +1,6 @@
 require("dotenv").config();
-require("./config/database")
-require("./utils/cloudRedis.js")
-// const redis = require("./utils/redis.js");
+require("./config/database");
+require("./utils/redis.js");
 const express = require("express");
 const cors = require("cors")
 
@@ -9,19 +8,12 @@ const PORT = process.env.PORT || 1112;
 
 const app = express();
 
-const userRoute = require('./routes/userRoute');
 const paystackRouter = require("./routes/paystackRoute.js");
 
 app.use(express.json());
 app.use(cors());
 
-app.use('/api/v1', userRoute)
 app.use('/api/v1', paystackRouter)
-
-// redis.on("connect", () => console.log("connection to redis successful")
-// );
-// redis.on('error', () => console.log('Unable to connect to redis')
-// );
 
 app.use((error, req, res, next) => {
   if(error){

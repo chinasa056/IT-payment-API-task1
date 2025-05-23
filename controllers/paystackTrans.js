@@ -92,4 +92,4 @@ exports.verifyPament = async (req, res) => {
             message: "Error Verifying Payment"
         })
     }
-}
+};
