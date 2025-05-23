@@ -99,6 +99,60 @@ const router = require("express").Router();
  */
 router.post("/transaction/initialize", initializePyment);
 
+/**
+ * @swagger
+ * /api/v1/transaction/verify:
+ *   get:
+ *     summary: Verify a Paystack payment transaction
+ *     description: |
+ *       This endpoint verifies the status of a Paystack transaction using the transaction reference captured in query parameter.
+ *       
+ *       ✅ It calls Paystack’s `/transaction/verify/{reference}` endpoint to confirm the status of the payment.
+ *       
+ *       ✅ If the payment was successful:
+ *       - The transaction record in the database is updated to `Success`.
+ *       - A success message with the updated transaction data is returned.
+ *       
+ *       ❌ If the payment failed:
+ *       - The transaction is updated with a `Failed` status.
+ *       - A failure message and transaction data are returned.
+
+ *       ⚠️ If the Paystack API is unreachable or returns an error, a 500 response is returned.
+
+ *     tags: [Transactions]
+ *     parameters:
+ *       - in: query
+ *         name: reference
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The transaction reference from Paystack
+ *         example: test_reference_123
+ *     responses:
+ *       200:
+ *         description: Payment verified and status updated
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Payment Successful
+ *                 data:
+ *                   type: object
+ *                   description: The updated transaction data
+ *       500:
+ *         description: Server error or failure verifying transaction
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Error Verifying Payment
+ */
 router.get("/transaction/verify", verifyPament);
 
 module.exports = router;
