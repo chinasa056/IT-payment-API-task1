@@ -13,9 +13,7 @@ exports.initializePyment = async (req, res) => {
             return res.status(400).json({
                 message: `Limit exceeded limit: Try again in ${settings.duration} seconds`
             })
-        }
-
-        await cacheTransactionInitialization(email, amount);
+        };
 
         const paymentData = {
             name,
@@ -28,10 +26,8 @@ exports.initializePyment = async (req, res) => {
                 Authorization: `Bearer ${settings.paystack_secret}`
             }
         });
-        // console.log(response.data);
 
-
-        const { data } = response
+        const { data } = response;
 
         const payment = new transactionModel({
             name,
@@ -39,9 +35,11 @@ exports.initializePyment = async (req, res) => {
             email,
             reference: data?.data?.reference,
             paymentDate: formattedDate
-        })
+        });
 
         await payment.save();
+        await cacheTransactionInitialization(email, amount);
+
         res.status(200).json({
             message: "Payment Initialized Successfully",
             data: {
@@ -49,7 +47,7 @@ exports.initializePyment = async (req, res) => {
                 reference: data?.data?.reference
             },
             transactionDetails: payment
-        })
+        });
 
     } catch (error) {
         console.log(error.message);
