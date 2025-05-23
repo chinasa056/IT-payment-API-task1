@@ -52,7 +52,7 @@ const options = {
     security: [{ BearerAuth: [] }],
     servers: [
       {
-        url: "https://hubspot-k95r.onrender.com",
+        url: "https://internpulse-payment-api-task.onrender.com",
         description: "Production Server"
       },
       {
