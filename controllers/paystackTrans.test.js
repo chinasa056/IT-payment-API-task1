@@ -54,7 +54,7 @@ describe('Paystack Transaction Controller - initializePyment', () => {
         
         expect(utilities.getCacheTransactionInitialization).toHaveBeenCalledWith('test@example.com');
         expect(res.status).toHaveBeenCalledWith(400);
-        expect(res.json).toHaveBeenCalledWith({
+        expect(res.status(400).json).toHaveBeenCalledWith({
             message: 'Limit exceeded limit: Try again in 60 seconds'
         });
     });
