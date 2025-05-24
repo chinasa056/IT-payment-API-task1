@@ -33,7 +33,7 @@ const options = {
       version: '1.0.0',
       description: "Documentation for InternPulse Task, a platform that allows small business owners accept payment using paystack payment gateway",
       license: {
-        name: 'BASE_URL:https://hubspot-k95r.onrender.com',
+        name: 'BASE_URL:https://internpulse-payment-api-task.onrender.com',
       },
       contact: {
         name: "Chinasa Acha",
